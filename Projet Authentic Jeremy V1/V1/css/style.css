@@ -1,0 +1,722 @@
+﻿/* =====================================================
+   FICHIER CSS D’APPRENTISSAGE — PROJET RESTAURANT
+   Version : fond général en dégradé + bannière séparée + nav séparée
+   Objectif : comprendre chaque structure et chaque ligne.
+===================================================== */
+
+
+/* =====================================================
+   1. RESET DE BASE
+   On remet à zéro les styles automatiques du navigateur.
+===================================================== */
+
+* { /* Sélectionne tous les éléments HTML de la page */
+  margin: 0; /* Supprime les marges extérieures par défaut */
+  padding: 0; /* Supprime les espacements intérieurs par défaut */
+  box-sizing: border-box; /* Inclut padding et bordure dans la taille totale des éléments */
+}
+
+html { /* Cible l’ensemble du document HTML */
+  scroll-behavior: smooth; /* Rend le scroll fluide quand on clique sur un lien du menu */
+}
+
+body { /* Cible tout le contenu visible de la page */
+  font-family: Arial, sans-serif; /* Définit la police générale du site */
+  line-height: 1.6; /* Améliore la lisibilité du texte */
+  color: #2b2118; /* Définit la couleur principale du texte */
+
+  background-color: #4B1438; /* Couleur de secours si le dégradé ne fonctionne pas */
+
+  background: linear-gradient(
+    156deg,
+    #4B1438 0%,
+    #7a3e2b 42%,
+    #c19a6b 100%
+  ); /* Dégradé général appliqué à toute la page */
+
+  background-attachment: fixed; /* Garde le fond fixe pendant le scroll */
+}
+
+img { /* Cible toutes les images du site */
+  max-width: 100%; /* Empêche une image de dépasser son bloc parent */
+  display: block; /* Supprime l’espace blanc automatique sous les images */
+}
+
+a { /* Cible tous les liens */
+  text-decoration: none; /* Supprime le soulignement par défaut */
+  color: inherit; /* Le lien récupère la couleur de son parent */
+}
+
+
+/* =====================================================
+   2. HEADER
+   Le header contient deux blocs visuels :
+   1. la bannière en haut
+   2. la navigation en dessous
+===================================================== */
+
+.header { /* Bloc global du haut de page */
+  width: 100%; /* Le header prend toute la largeur de l’écran */
+
+  padding: 24px 30px 28px; /* Haut 24px, côtés 30px, bas 28px */
+
+  display: flex; /* Active Flexbox */
+  flex-direction: column; /* Place la bannière puis la navigation en colonne */
+  align-items: center; /* Centre les blocs horizontalement */
+  gap: 18px; /* Espace entre la bannière et la navigation */
+
+  border-bottom: 4px solid rgba(193, 154, 107, 0.75); /* Ligne camel sous le header */
+}
+
+
+/* =====================================================
+   3. BANNIÈRE DU HEADER
+===================================================== */
+
+.banner { 
+  position: relative;
+  width: 100%; /* La bannière prend toute la largeur disponible */
+  max-width: 1100px; /* Limite la largeur pour éviter une bannière trop étirée */
+  height: 290px; /* Hauteur de la bannière : augmente ou réduis cette valeur */
+  background-image: url("../images/images head/banniere-authentic-v1.png"); /* Image de bannière */
+  background-size: cover; /* L’image remplit toute la bannière */
+  background-position: center center; /* Centre l’image horizontalement et verticalement */
+  background-repeat: no-repeat; /* Empêche l’image de se répéter */
+  border-radius: 18px; /* Arrondit les angles de la bannière */
+  overflow: hidden; /* Empêche les débordements de l’image hors de la bannière */
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.22); /* Ombre douce autour de la bannière */
+}
+
+/*
+   RÉGLAGES BANNIÈRE :
+
+   height: 190px;
+   → réduis à 160px si la bannière est trop grande.
+   → augmente à 230px si tu veux plus de hauteur.
+
+   background-position: center center;
+   → essaie center top si tu veux voir davantage le haut de l’image.
+   → essaie center bottom si tu veux voir davantage le bas de l’image.
+
+   background-size: cover;
+   → garde cover pour remplir le bloc.
+   → essaie contain si tu veux voir toute l’image, mais il peut y avoir des bandes vides.
+*/
+
+
+/* =====================================================
+   4. NAVBAR — FLEXBOX
+   La navigation est maintenant un bloc séparé sous la bannière.
+===================================================== */
+
+.navbar { /* Bloc de la navigation */
+  position: absolute;
+  left: 30px; /* Aligne la navbar avec les côtés de la bannière */
+  right: 30px; /* Aligne la navbar avec les côtés de la bannière */
+  bottom: 24px; /* Place la navbar à 24px du bas de la bannière */
+
+  display: flex; /* Active Flexbox */
+  justify-content: center; /* Centre les éléments de navigation horizontalement */
+  align-items: center; /* Centre les éléments de navigation verticalement */
+}
+
+.nav-list a { /* Chaque bouton de navigation */
+  position: relative;
+  color: #fff8ef;
+  font-size: 17px; /* Taille du texte des boutons */
+  font-weight: 600; /* Texte semi-gras pour plus de présence */
+  padding-bottom: 6px; /* Espace entre le texte et la ligne de fond du bouton */
+  text-shadow: 0 2px 8px rgba(42, 16, 16, 35, 0.58); /* Ombre légère pour faire ressortir le texte sur la bannière */
+}
+
+.nav-list a::after { /* État au survol des boutons */
+  content: ""; /* Nécessaire pour créer un pseudo-élément */
+  position: absolute; /* Positionne le dégradé par rapport au bouton */
+  left: 0; /* Commence à gauche du bouton */
+  right: 0; /* S’étend jusqu’à la droite du bouton */
+  bottom: 0; /* Place le dégradé au bas du bouton */
+  height: 2%; /* Hauteur de la ligne de fond du bouton */
+  background: linear-gradient(90deg, #c19a6b, #fff8ef);
+  transform: scaleX(0); /* Réduit la ligne à 0 au départ */
+  transform-origin: left center; /* L’animation part de la gauche */
+  transition: transform 0.25s ease; /* Animation douce */
+}
+
+.nav-list a:hover::after { /* Survol du bouton */
+  transform: scaleX(1); /* Agrandit la ligne pour couvrir toute la largeur du bouton */
+}
+
+
+/* =====================================================
+   5. HERO / ACCUEIL — FLEXBOX
+   Le hero contient le H1, le texte et le bouton principal.
+   Le dégradé est aussi présent dans le bloc du H1.
+===================================================== */
+
+.hero { /* Grande section d’accueil */
+  min-height: 420px; /* Hauteur du bloc d’accueil */
+
+  display: flex; /* Active Flexbox */
+  justify-content: center; /* Centre le contenu horizontalement */
+  align-items: center; /* Centre le contenu verticalement */
+
+  text-align: center; /* Centre le texte */
+
+  padding: 70px 30px; /* Espace autour du contenu */
+}
+
+.hero-content { /* Bloc contenant le H1, le paragraphe et le bouton */
+  max-width: 720px; /* Limite la largeur du bloc */
+
+  padding: 52px; /* Espace intérieur du bloc */
+
+  border-radius: 22px; /* Angles arrondis */
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 250, 243, 0.95) 0%,
+    rgba(244, 227, 189, 0.92) 52%,
+    rgba(193, 154, 107, 0.86) 100%
+  ); /* Dégradé clair sur le bloc du H1 */
+
+  border: 1px solid rgba(255, 255, 255, 0.45); /* Bordure claire */
+
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18); /* Ombre pour détacher le bloc du fond */
+}
+
+.hero h1 { /* Titre principal */
+  font-size: 48px; /* Taille du H1 */
+  color: #4B1438; /* Couleur prune */
+  margin-bottom: 16px; /* Espace sous le titre */
+}
+
+.hero p { /* Paragraphe sous le H1 */
+  font-size: 20px; /* Taille du texte */
+  color: #2b2118; /* Couleur foncée lisible */
+  margin-bottom: 30px; /* Espace avant le bouton */
+}
+
+
+/* =====================================================
+   6. BOUTON PRINCIPAL
+   Le bouton est un lien stylisé.
+===================================================== */
+
+.btn { /* Bouton principal */
+  display: inline-block; /* Permet au lien de se comporter comme un bouton */
+
+  color: #ffffff; /* Texte blanc */
+
+  padding: 12px 28px; /* Espace intérieur du bouton */
+
+  border-radius: 999px; /* Bouton très arrondi */
+
+  font-weight: bold; /* Texte en gras */
+
+  background: linear-gradient(
+    135deg,
+    #4B1438 0%,
+    #7a3e2b 45%,
+    #c19a6b 100%
+  ); /* Dégradé progressif */
+
+  background-size: 200% 100%; /* Prépare le déplacement du dégradé */
+
+  background-position: left center; /* Position initiale du dégradé */
+
+  transition:
+    background-position 0.4s ease,
+    transform 0.3s ease; /* Animation douce */
+}
+
+.btn:hover { /* Survol du bouton */
+  background-position: right center; /* Déplace le dégradé */
+
+  transform: translateY(-2px); /* Remonte légèrement le bouton */
+}
+
+
+/* =====================================================
+   7. SECTIONS GÉNÉRALES
+   Toutes les grandes parties du site utilisent .section.
+===================================================== */
+
+.section { /* Classe commune aux sections */
+  max-width: 1100px; /* Largeur maximale */
+
+  margin: 60px auto; /* Espace haut/bas + centrage horizontal */
+
+  padding: 50px 35px; /* Espace intérieur */
+
+  border-radius: 22px; /* Angles arrondis */
+
+  border: 1px solid rgba(255, 255, 255, 0.35); /* Bordure claire */
+
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12); /* Ombre douce */
+}
+
+.section h2 { /* Titres des sections */
+  font-size: 34px; /* Taille des titres */
+  color: #4B1438; /* Couleur prune */
+  margin-bottom: 24px; /* Espace sous le titre */
+}
+
+.section p { /* Paragraphes des sections */
+  max-width: 760px; /* Limite la largeur des lignes */
+  margin-bottom: 16px; /* Espace sous les paragraphes */
+}
+
+
+/* =====================================================
+   7B. SECTION À PROPOS — TEXTE + IMAGE
+   Objectif : placer le texte et l’image côte à côte.
+===================================================== */
+
+.apropos-content { /* Bloc parent qui contient le texte et l’image */
+  display: flex; /* Place les deux blocs sur une même ligne */
+  align-items: center; /* Aligne verticalement le texte et l’image */
+  gap: 32px; /* Crée un espace entre le texte et l’image */
+}
+
+.apropos-texte { /* Bloc de texte de la section À propos */
+  flex: 1; /* Le texte prend une part de l’espace disponible */
+}
+
+.apropos-texte h3 { /* Sous-titre de la section À propos */
+  font-size: 24px; /* Taille du sous-titre */
+  color: #5f2d3a; /* Couleur aubergine proche des titres de plats */
+  margin-bottom: 16px; /* Espace entre le sous-titre et le paragraphe */
+}
+
+.apropos-image { /* Bloc qui contient l’image */
+  flex: 1; /* L’image prend une part de l’espace disponible */
+}
+
+.apropos-image img { /* Image de la section À propos */
+  width: 100%; /* L’image prend toute la largeur de son bloc */
+  height: 360px; /* Donne une hauteur régulière à l’image */
+  object-fit: cover; /* Remplit le cadre sans déformer l’image */
+  border-radius: 18px; /* Arrondit les angles de l’image */
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12); /* Ajoute une ombre légère */
+}
+
+
+/* =====================================================
+   8. COULEURS DES BLOCS
+   Les blocs restent différenciés pour ton apprentissage.
+===================================================== */
+
+#apropos { /* Section À propos */
+  background-color: rgba(244, 227, 189, 0.92); /* Beige/camel clair */
+}
+
+#carte { /* Section Notre carte */
+  background-color: rgba(220, 233, 228, 0.92); /* Bleu/vert doux */
+}
+
+#reservation { /* Section Réservation */
+  background-color: rgba(234, 216, 210, 0.92); /* Rosé doux */
+}
+
+#contact { /* Section Contact */
+  background-color: rgba(223, 232, 214, 0.92); /* Vert doux */
+}
+
+
+/* =====================================================
+   9. MENU / CARTE — CSS GRID
+   Objectif : organiser les plats en colonnes.
+===================================================== */
+
+.menu-grid { /* Parent des cartes de plats */
+  display: grid; /* Active CSS Grid */
+
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Crée automatiquement des colonnes harmonieuses selon la place disponible */
+
+  gap: 28px; /* Espace entre les cartes */
+
+  align-items: stretch; /* Force les cartes d’une même ligne à garder la même hauteur */
+}
+
+.plat { /* Chaque carte de plat */
+  background-color: #fffaf3; /* Fond clair */
+
+  padding: 28px; /* Espace intérieur */
+
+  border-radius: 18px; /* Coins arrondis */
+
+  border: 1px solid rgba(43, 33, 24, 0.14); /* Bordure légère */
+
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08); /* Ombre légère */
+
+  display: flex; /* Permet d’organiser l’image, le titre, le texte et le prix en colonne */
+
+  flex-direction: column; /* Empile les informations du plat verticalement */
+
+  height: 100%; /* La carte prend toute la hauteur disponible dans la grille */
+}
+
+.plat h3 { /* Titre du plat */
+  font-size: 22px; /* Taille du titre */
+  color: #5f2d3a; /* Aubergine */
+  margin-bottom: 12px; /* Espace sous le titre */
+
+  min-height: 58px; /* Donne une zone régulière aux titres, même s’ils n’ont pas tous la même longueur */
+}
+
+.plat p { /* Description du plat */
+  font-size: 16px; /* Taille du texte */
+  margin-bottom: 18px; /* Espace avant le prix */
+
+  flex: 1; /* Le texte occupe l’espace disponible et pousse le prix vers le bas */
+}
+
+.plat span { /* Prix du plat */
+  display: inline-block; /* Transforme le prix en badge */
+
+  background-color: #c89f68; /* Couleur camel */
+
+  color: #2b2118; /* Texte foncé */
+
+  padding: 6px 14px; /* Espace intérieur */
+
+  border-radius: 999px; /* Badge arrondi */
+
+  font-weight: bold; /* Prix en gras */
+
+  align-self: flex-start; /* Garde le badge prix aligné à gauche */
+
+  margin-top: auto; /* Place le prix en bas de la carte pour l’aligner avec les autres */
+}
+
+.plat img { /* Image du plat */
+  width: 100%; /* L’image prend toute la largeur de la carte */
+  height: 180px; /* Toutes les images de plats gardent la même hauteur */
+  object-fit: cover; /* L’image remplit son cadre sans être déformée */
+  border-radius: 14px; /* Arrondit les angles de l’image */
+  margin-bottom: 18px; /* Espace entre l’image et le titre */
+}
+
+
+/* =====================================================
+   10. FORMULAIRE — FLEXBOX EN COLONNE
+   Objectif : empiler les champs proprement.
+===================================================== */
+
+.reservation-content { /* Bloc parent du formulaire et de la mosaïque */
+  display: grid; /* Place le formulaire et les photos en colonnes */
+  grid-template-columns: minmax(320px, 0.9fr) minmax(360px, 1.1fr); /* Garde un bon équilibre entre formulaire et photos */
+  gap: 32px; /* Espace entre le formulaire et la mosaïque */
+  align-items: start; /* Garde la hauteur naturelle du formulaire comme référence */
+}
+
+.form-reservation { /* Formulaire complet */
+  max-width: 580px; /* Largeur maximale */
+
+  background-color: #fffaf3; /* Fond clair */
+
+  padding: 32px; /* Espace intérieur */
+
+  border-radius: 18px; /* Angles arrondis */
+
+  display: flex; /* Active Flexbox */
+
+  flex-direction: column; /* Empile les éléments verticalement */
+
+  gap: 14px; /* Espace entre les éléments */
+
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08); /* Ombre légère */
+
+  width: 100%; /* Le formulaire utilise toute la largeur de sa colonne */
+}
+
+.form-reservation label { /* Labels du formulaire */
+  font-weight: bold; /* Texte en gras */
+  color: #4B1438; /* Couleur prune */
+}
+
+.form-reservation input { /* Champs du formulaire */
+  padding: 12px 14px; /* Espace intérieur */
+
+  border: 1px solid rgba(43, 33, 24, 0.25); /* Bordure douce */
+
+  border-radius: 10px; /* Angles arrondis */
+
+  font-size: 16px; /* Taille du texte */
+
+  font-family: Arial, sans-serif; /* Même police que le site */
+}
+
+.form-reservation input:focus { /* Champ actif */
+  outline: 2px solid #c89f68; /* Contour visible */
+
+  border-color: #c89f68; /* Bordure camel */
+}
+
+.form-reservation button { /* Bouton du formulaire */
+  margin-top: 12px; /* Espace au-dessus */
+
+  padding: 14px; /* Hauteur confortable */
+
+  border: none; /* Supprime la bordure par défaut */
+
+  border-radius: 999px; /* Bouton arrondi */
+
+  color: #ffffff; /* Texte blanc */
+
+  font-size: 16px; /* Taille du texte */
+
+  font-weight: bold; /* Texte en gras */
+
+  cursor: pointer; /* Curseur main */
+
+  background: linear-gradient(
+    135deg,
+    #4B1438 0%,
+    #7a3e2b 45%,
+    #c19a6b 100%
+  ); /* Dégradé progressif */
+
+  background-size: 200% 100%; /* Prépare l’animation */
+
+  background-position: left center; /* Position initiale */
+
+  transition:
+    background-position 0.4s ease,
+    transform 0.3s ease; /* Animation douce */
+}
+
+.form-reservation button:hover { /* Survol du bouton */
+  background-position: right center; /* Déplace le dégradé */
+
+  transform: translateY(-2px); /* Remonte légèrement */
+}
+
+.reservation-mosaique { /* Mosaïque de photos à côté du formulaire */
+  display: grid; /* Active CSS Grid pour organiser les photos */
+  grid-template-columns: repeat(4, 1fr); /* Crée 4 colonnes pour afficher les photos sans trop allonger le bloc */
+  grid-template-rows: repeat(4, minmax(0, 1fr)); /* Répartit les photos dans la même hauteur que le formulaire */
+  gap: 10px; /* Espace entre les photos */
+  align-self: start; /* Empêche la mosaïque d’agrandir la ligne de réservation */
+  height: 540px; /* Hauteur réglée pour correspondre au formulaire sans les photos */
+}
+
+.reservation-mosaique img { /* Chaque photo de la mosaïque */
+  width: 100%; /* La photo prend toute la largeur de sa case */
+  height: 100%; /* La photo prend toute la hauteur de sa case */
+  object-fit: cover; /* Remplit la case sans déformer l’image */
+  border-radius: 14px; /* Arrondit les angles des photos */
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10); /* Ajoute une ombre légère */
+}
+
+.reservation-mosaique img:nth-child(1) { /* Première photo mise en avant */
+  grid-column: span 2; /* La photo prend deux colonnes */
+  grid-row: span 2; /* La photo prend deux lignes */
+}
+
+.reservation-mosaique img:nth-child(4) { /* Quatrième photo un peu plus large */
+  grid-column: span 2; /* La photo prend deux colonnes */
+}
+
+.reservation-mosaique img:nth-child(9) { /* Neuvième photo mise en valeur pour équilibrer la fin de la mosaïque */
+  grid-column: span 2; /* La photo prend deux colonnes */
+}
+
+
+/* =====================================================
+   11. CONTACT
+   Objectif : rendre les informations lisibles.
+===================================================== */
+
+#contact p { /* Chaque ligne d’information */
+  background-color: rgba(255, 255, 255, 0.58); /* Fond blanc transparent */
+
+  padding: 14px; /* Espace intérieur */
+
+  margin-bottom: 12px; /* Espace entre les lignes */
+
+  border-radius: 10px; /* Angles arrondis */
+}
+
+
+/* =====================================================
+   12. FOOTER
+   Bas de page.
+===================================================== */
+
+.footer { /* Bloc final */
+  background-color: rgba(75, 20, 56, 0.88); /* Fond prune transparent */
+
+  color: #ffffff; /* Texte blanc */
+
+  text-align: center; /* Texte centré */
+
+  padding: 28px; /* Espace intérieur */
+
+  margin-top: 80px; /* Espace avec la dernière section */
+
+  border-top: 3px solid rgba(193, 154, 107, 0.75); /* Ligne camel en haut */
+}
+
+
+/* =====================================================
+   13. MODE DEBUG OPTIONNEL
+   À activer dans ton HTML avec :
+   <body class="debug">
+===================================================== */
+
+body.debug .header { /* Visualise le header */
+  outline: 3px dashed red; /* Contour rouge */
+}
+
+body.debug .header::before { /* Visualise la bannière */
+  outline: 3px dashed white; /* Contour blanc */
+}
+
+body.debug .navbar { /* Visualise la navbar */
+  outline: 3px dashed yellow; /* Contour jaune */
+}
+
+body.debug .hero { /* Visualise le hero */
+  outline: 3px dashed blue; /* Contour bleu */
+}
+
+body.debug .hero-content { /* Visualise le bloc H1 */
+  outline: 3px dashed orange; /* Contour orange */
+}
+
+body.debug .section { /* Visualise les sections */
+  outline: 3px dashed purple; /* Contour violet */
+}
+
+body.debug .menu-grid { /* Visualise la grille */
+  outline: 3px dashed green; /* Contour vert */
+}
+
+body.debug .plat { /* Visualise les plats */
+  outline: 3px dashed black; /* Contour noir */
+}
+
+body.debug .form-reservation { /* Visualise le formulaire */
+  outline: 3px dashed brown; /* Contour marron */
+}
+
+
+/* =====================================================
+   14. RESPONSIVE TABLETTE
+   En dessous de 900px, on adapte la grille et la bannière.
+===================================================== */
+
+@media screen and (max-width: 900px) { /* Écrans de 900px ou moins */
+
+  .header::before { /* Bannière sur tablette */
+    height: 170px; /* Réduit la hauteur */
+  }
+
+  .menu-grid { /* Grille sur tablette */
+    grid-template-columns: repeat(2, 1fr); /* Passe à 2 colonnes */
+  }
+
+  .hero h1 { /* H1 sur tablette */
+    font-size: 40px; /* Réduit le titre */
+  }
+
+  .section { /* Sections sur tablette */
+    margin: 45px 24px; /* Réduit les marges extérieures */
+  }
+}
+
+
+/* =====================================================
+   15. RESPONSIVE MOBILE
+   En dessous de 768px, on simplifie l’affichage.
+===================================================== */
+
+@media screen and (max-width: 768px) { /* Écrans de 768px ou moins */
+
+  .header { /* Header mobile */
+    padding: 18px 20px 24px; /* Réduit les espaces */
+    gap: 14px; /* Réduit l’espace entre bannière et navigation */
+  }
+
+  .header::before { /* Bannière mobile */
+    height: 135px; /* Réduit fortement la hauteur */
+    border-radius: 14px; /* Réduit l’arrondi */
+    background-position: center center; /* Centre l’image */
+  }
+
+  .navbar { /* Navbar mobile */
+    padding: 12px; /* Réduit l’espace intérieur */
+    border-radius: 18px; /* Arrondi plus raisonnable */
+  }
+
+  .nav-list { /* Liste mobile */
+    flex-direction: column; /* Boutons les uns sous les autres */
+    gap: 8px; /* Réduit l’espace */
+  }
+
+  .nav-list a { /* Boutons mobile */
+    width: 190px; /* Largeur régulière */
+    text-align: center; /* Texte centré */
+  }
+
+  .hero { /* Hero mobile */
+    min-height: 360px; /* Réduit la hauteur */
+    padding: 40px 20px; /* Réduit les espaces */
+  }
+
+  .hero-content { /* Bloc H1 mobile */
+    padding: 30px 22px; /* Réduit l’espace intérieur */
+  }
+
+  .hero h1 { /* H1 mobile */
+    font-size: 32px; /* Réduit le titre */
+  }
+
+  .hero p { /* Paragraphe mobile */
+    font-size: 17px; /* Réduit le texte */
+  }
+
+  .section { /* Sections mobile */
+    margin: 30px 14px; /* Réduit les marges extérieures */
+    padding: 32px 22px; /* Réduit les espaces intérieurs */
+  }
+
+  .section h2 { /* Titres mobile */
+    font-size: 26px; /* Réduit les titres */
+  }
+
+  .apropos-content { /* Section À propos mobile */
+    flex-direction: column; /* Place le texte et l’image l’un sous l’autre */
+  }
+
+  .apropos-image img { /* Image À propos mobile */
+    height: 240px; /* Réduit la hauteur de l’image sur petit écran */
+  }
+
+  .reservation-content { /* Réservation mobile */
+    grid-template-columns: 1fr; /* Place le formulaire et la mosaïque l’un sous l’autre */
+  }
+
+  .reservation-mosaique { /* Mosaïque mobile */
+    grid-template-columns: repeat(2, 1fr); /* Passe les photos sur 2 colonnes */
+    grid-template-rows: none; /* Annule les rangées fixes de la version ordinateur */
+    grid-auto-rows: 120px; /* Réduit la hauteur des photos sur mobile */
+    height: auto; /* Laisse la mosaïque reprendre une hauteur naturelle sur mobile */
+  }
+
+  .reservation-mosaique img:nth-child(1),
+  .reservation-mosaique img:nth-child(4),
+  .reservation-mosaique img:nth-child(9) { /* Photos mises en avant sur mobile */
+    grid-column: span 1; /* Chaque photo reprend une seule colonne */
+    grid-row: span 1; /* Chaque photo reprend une seule ligne */
+  }
+
+  .menu-grid { /* Grille mobile */
+    grid-template-columns: 1fr; /* Passe à une seule colonne */
+  }
+
+  .form-reservation { /* Formulaire mobile */
+    padding: 24px; /* Réduit l’espace intérieur */
+  }
+}
