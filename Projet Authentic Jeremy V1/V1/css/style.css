@@ -1,4 +1,4 @@
-﻿/* =====================================================
+/* =====================================================
    FICHIER CSS D’APPRENTISSAGE — PROJET RESTAURANT
    Version : fond général en dégradé + bannière séparée + nav séparée
    Objectif : comprendre chaque structure et chaque ligne.
@@ -120,13 +120,19 @@ a { /* Cible tous les liens */
   align-items: center; /* Centre les éléments de navigation verticalement */
 }
 
+.nav-list { /* Liste des liens du menu */
+  display: flex; /* Place les liens en ligne, côte à côte */
+  list-style: none; /* Supprime les puces devant chaque lien */
+  gap: 28px; /* Espace régulier entre chaque lien */
+}
+
 .nav-list a { /* Chaque bouton de navigation */
   position: relative;
   color: #fff8ef;
   font-size: 17px; /* Taille du texte des boutons */
   font-weight: 600; /* Texte semi-gras pour plus de présence */
   padding-bottom: 6px; /* Espace entre le texte et la ligne de fond du bouton */
-  text-shadow: 0 2px 8px rgba(42, 16, 16, 35, 0.58); /* Ombre légère pour faire ressortir le texte sur la bannière */
+  text-shadow: 0 2px 8px rgba(42, 16, 16, 0.58); /* Ombre légère pour faire ressortir le texte sur la bannière */
 }
 
 .nav-list a::after { /* État au survol des boutons */
@@ -135,7 +141,7 @@ a { /* Cible tous les liens */
   left: 0; /* Commence à gauche du bouton */
   right: 0; /* S’étend jusqu’à la droite du bouton */
   bottom: 0; /* Place le dégradé au bas du bouton */
-  height: 2%; /* Hauteur de la ligne de fond du bouton */
+  height: 2px; /* Hauteur fixe de la ligne de soulignement */
   background: linear-gradient(90deg, #c19a6b, #fff8ef);
   transform: scaleX(0); /* Réduit la ligne à 0 au départ */
   transform-origin: left center; /* L’animation part de la gauche */
