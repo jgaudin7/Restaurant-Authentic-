@@ -1,6 +1,6 @@
 # Authentic - Restaurant à Cannes La Bocca
 
-Ce projet est un site vitrine réalisé pour le restaurant Authentic, situé à Cannes La Bocca, à la demande d'un ami qui en est le propriétaire. L'objectif était de présenter l'établissement, sa carte et de permettre aux clients de réserver une table en ligne.
+Ce projet en cours d'élaboration est un site vitrine réalisé pour le restaurant Authentic, situé à Cannes La Bocca, à la demande d'un ami qui en est le propriétaire. L'objectif était de présenter l'établissement, sa carte et de permettre aux clients de réserver une table en ligne.
 
 ## Le contenu du site
 
